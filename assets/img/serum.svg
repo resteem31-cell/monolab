@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 360" role="img" aria-label="MONOLAB Redefining Firming Serum">
+<defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#e3ebe8"/><stop offset=".5" stop-color="#f9fbfa"/><stop offset="1" stop-color="#d9e3df"/></linearGradient>
+<linearGradient id="c" x1="0" x2="1"><stop offset="0" stop-color="#e6e8e8"/><stop offset=".45" stop-color="#ffffff"/><stop offset="1" stop-color="#d9dcdc"/></linearGradient></defs>
+<ellipse cx="100" cy="344" rx="62" ry="7" fill="#000" opacity=".06"/>
+<rect x="82" y="40" width="36" height="60" rx="16" fill="url(#c)"/>
+<rect x="74" y="96" width="52" height="44" rx="6" fill="url(#c)"/>
+<rect x="96" y="140" width="8" height="150" rx="4" fill="#cfdcd8" opacity=".7"/>
+<rect x="48" y="138" width="104" height="204" rx="18" fill="url(#g)" stroke="#d1dbd7" opacity=".95"/>
+<g transform="translate(100 212)" fill="none" stroke="#5E9488" stroke-width="5" stroke-linecap="round"><path d="M12 -34 C-10 -34 -12 -2 2 0 C16 2 14 34 -12 34"/><path d="M-12 -34 C6 -24 6 -12 2 0 C-2 12 -2 24 12 34"/></g>
+<text x="100" y="272" text-anchor="middle" font-family="Arial" font-size="8" fill="#5E9488" letter-spacing="1.2">MONOLAB</text>
+<text x="100" y="283" text-anchor="middle" font-family="Arial" font-size="5.5" fill="#7b8a86" letter-spacing=".8">FIRMING SERUM</text>
+</svg>
