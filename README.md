@@ -26,14 +26,13 @@
 메일의 **Activate Form** 버튼을 눌러야 그 이후 문의가 정상적으로 도착합니다.
 (네이버 스팸함도 확인해 주세요.) 받는 주소를 바꾸려면 `assets/js/main.js` 맨 위 `INQUIRY_EMAIL` 을 수정합니다.
 
-### 2. 리뷰를 실제 후기로 교체
-`assets/js/reviews.js` 의 리뷰 6개는 **화면 구성을 위한 예시**이며, 사이트에 "예시" 배지와 안내 문구가 표시됩니다.
-실제 사용하지 않은 후기를 진짜 후기처럼 게시하면 표시광고법상 기만 광고가 될 수 있으니,
-실제 고객 · 병원 후기로 내용을 바꾸고 `sample: false` 로 바꿔 주세요. 예시가 모두 없어지면 배지와 안내 문구도 사라집니다.
+### 2. 사용감 · 리뷰 문구
+`assets/js/reviews.js` 에 제품별 사용감 문구(3개 언어)가 있습니다. 실제 고객 · 병원 후기를 받으면
+같은 형식에 `rating`(별점)과 `who`(작성자 정보)를 추가하면 후기 카드로 표시됩니다.
 
-### 3. 제품 사진 교체 (권장)
-지금 제품 이미지는 실제 용기를 본뜬 일러스트입니다. 고해상도 제품 사진(배경이 투명한 PNG 권장)을
-`assets/img/` 에 넣고 `index.html` 의 `mist.svg`, `serum.svg`, `cream.svg` 경로를 바꾸면 됩니다.
+### 3. 제품 사진 · 로고
+제품 사진은 `assets/img/mist.jpg`, `serum.jpg`, `cream.jpg`, 로고는 `assets/img/logo-mark.png` 입니다.
+같은 이름의 파일로 덮어쓰면 바로 교체됩니다.
 
 ### 4. 전화번호 · 주소 추가 (선택)
 `index.html` 의 문의 영역(`<dl class="contact">`)과 하단 푸터에 항목을 추가하세요.
@@ -41,7 +40,7 @@
 ## 인터넷에 올리기 (GitHub Pages, 무료)
 1. GitHub 저장소 → **Settings → Pages**
 2. Source: **Deploy from a branch**, Branch: `main` / `(root)` 선택 후 Save
-3. 몇 분 뒤 `https://<계정명>.github.io/monolab/` 에서 확인
+3. 몇 분 뒤 `https://resteem31-cell.github.io/monolab/` 에서 확인
 4. 보유한 도메인을 연결하려면 같은 화면의 **Custom domain** 에 입력
 
 Netlify, Cloudflare Pages 등 다른 정적 호스팅에 폴더를 그대로 올려도 동작합니다.

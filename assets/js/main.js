@@ -71,19 +71,14 @@
 
   function renderReviews() {
     var list = document.getElementById("reviewList");
-    var reviews = window.REVIEWS || [];
-    var hasSample = reviews.some(function (r) { return r.sample; });
-    document.getElementById("sampleNotice").hidden = !hasSample;
-    var sampleLabel = { ko: "예시", en: "Sample", zh: "示例" }[current];
-    list.innerHTML = reviews.map(function (r) {
-      var stars = "★★★★★".slice(0, r.rating) + "☆☆☆☆☆".slice(0, 5 - r.rating);
+    list.innerHTML = (window.REVIEWS || []).map(function (r) {
+      var stars = r.rating ? "★★★★★".slice(0, r.rating) + "☆☆☆☆☆".slice(0, 5 - r.rating) : "";
       return '<article class="review">' +
-        '<div class="r-top"><span class="r-prod">' + esc(pick(window.PRODUCT_NAMES[r.product])) + '</span>' +
-        (r.sample ? '<span class="badge">' + sampleLabel + '</span>' : '') + '</div>' +
-        '<div class="stars" aria-label="' + r.rating + ' / 5">' + stars + '</div>' +
+        '<div class="r-top"><span class="r-prod">' + esc(pick(window.PRODUCT_NAMES[r.product])) + '</span></div>' +
+        (stars ? '<div class="stars" aria-label="' + r.rating + ' / 5">' + stars + '</div>' : '') +
         '<h4>' + esc(pick(r.title)) + '</h4>' +
         '<p>' + esc(pick(r.body)) + '</p>' +
-        '<span class="who">' + esc(pick(r.who)) + '</span>' +
+        (r.who ? '<span class="who">' + esc(pick(r.who)) + '</span>' : '') +
         '</article>';
     }).join("");
   }
@@ -103,6 +98,16 @@
   var form = document.getElementById("inquiryForm");
   var msg = document.getElementById("formMsg");
 
+  // 입점 문의에는 수출 국가 항목이 필요 없으므로 숨깁니다.
+  var countryField = document.getElementById("countryField");
+  function isExport() { return form.elements.type.value.indexOf("수출") === 0; }
+  function syncCountry() {
+    countryField.hidden = !isExport();
+    if (!isExport()) form.elements.country.value = "";
+  }
+  form.querySelectorAll('input[name="type"]').forEach(function (el) { el.addEventListener("change", syncCountry); });
+  syncCountry();
+
   function showMsg(text, cls) { msg.textContent = text; msg.className = "form-msg " + (cls || ""); }
 
   function collect() {
@@ -115,7 +120,7 @@
       "연락처 Contact": fd.get("phone").trim(),
       "이메일 Email": fd.get("email").trim(),
       "지역 Region": fd.get("region").trim(),
-      "수출국가 Export country": fd.get("country").trim(),
+      "수출국가 Export country": isExport() ? fd.get("country").trim() : "-",
       "판매방법 Sales channel": methodSel.value,
       "문의사항 Message": fd.get("message").trim(),
       "작성 언어 Language": current.toUpperCase()
@@ -162,6 +167,7 @@
       .then(function (res) {
         if (String(res.success) !== "true") throw new Error(res.message || "failed");
         form.reset();
+        syncCountry();
         showMsg(t("msg.ok"), "ok");
       })
       .catch(function () {
